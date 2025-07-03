@@ -85,6 +85,32 @@ export default function Layout({ children }: { children: React.ReactNode }) {
               </Link>
 
               <ThemeToggle />
+
+              {sessionLoading ? (
+                <div className="w-8 h-8 animate-pulse bg-muted rounded"></div>
+              ) : user ? (
+                <DropdownMenu>
+                  <DropdownMenuTrigger asChild>
+                    <Button variant="ghost" className="flex items-center space-x-2">
+                      <User className="h-4 w-4" />
+                      <span>{user.email}</span>
+                    </Button>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent align="end">
+                    <DropdownMenuItem asChild>
+                      <Link href="/admin" className="flex items-center space-x-2">
+                        <Settings className="h-4 w-4" />
+                        <span>Admin Dashboard</span>
+                      </Link>
+                    </DropdownMenuItem>
+                    <DropdownMenuSeparator />
+                    <DropdownMenuItem onClick={handleLogout} className="flex items-center space-x-2 text-destructive">
+                      <LogOut className="h-4 w-4" />
+                      <span>Logout</span>
+                    </DropdownMenuItem>
+                  </DropdownMenuContent>
+                </DropdownMenu>
+              ) : null}
             </nav>
           </div>
         </div>
