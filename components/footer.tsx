@@ -5,6 +5,11 @@ import { Briefcase, Mail, Facebook, Twitter, Linkedin, Instagram } from "lucide-
 import { Button } from "@/components/ui/button"
 import { Separator } from "@/components/ui/separator"
 
+const telegramLink = "https://t.me/JobsEthiopiaOfficial"
+const tiktokLink = "https://www.tiktok.com/@jobsethiopiaofficial?is_from_webapp=1&sender_device=pc"
+const facebookLink = "https://web.facebook.com/profile.php?viewas=100000686899395&id=61578169974603"
+const instagramLink = "https://www.instagram.com/jobsethiopia/"
+
 // Custom TikTok and Telegram icons as SVG components
 const TikTokIcon = ({ className }: { className?: string }) => (
   <svg className={className} viewBox="0 0 24 24" fill="currentColor">
@@ -39,28 +44,28 @@ export default function Footer() {
               </p>
               <div className="flex space-x-4">
                 <Button variant="ghost" size="sm" className="p-2">
+                  <Link href={facebookLink} target="_blank" rel="noopener noreferrer">
                   <Facebook className="h-4 w-4" />
                   <span className="sr-only">Facebook</span>
+                  </Link>
                 </Button>
                 <Button variant="ghost" size="sm" className="p-2">
-                  <Twitter className="h-4 w-4" />
-                  <span className="sr-only">Twitter</span>
-                </Button>
-                <Button variant="ghost" size="sm" className="p-2">
-                  <Linkedin className="h-4 w-4" />
-                  <span className="sr-only">LinkedIn</span>
-                </Button>
-                <Button variant="ghost" size="sm" className="p-2">
+                  <Link href={instagramLink} target="_blank" rel="noopener noreferrer">
                   <Instagram className="h-4 w-4" />
                   <span className="sr-only">Instagram</span>
+                  </Link>
                 </Button>
                 <Button variant="ghost" size="sm" className="p-2">
+                  <Link href={tiktokLink} target="_blank" rel="noopener noreferrer">
                   <TikTokIcon className="h-4 w-4" />
                   <span className="sr-only">TikTok</span>
+                  </Link>
                 </Button>
                 <Button variant="ghost" size="sm" className="p-2">
+                  <Link href={telegramLink} target="_blank" rel="noopener noreferrer">
                   <TelegramIcon className="h-4 w-4" />
                   <span className="sr-only">Telegram</span>
+                  </Link>
                 </Button>
               </div>
             </div>
@@ -151,7 +156,7 @@ export default function Footer() {
               <Mail className="h-5 w-5 text-primary" />
               <div>
                 <p className="text-sm font-medium text-foreground">Email Us</p>
-                <p className="text-sm text-muted-foreground">JobsEthiopia@gmail.com</p>
+                <p className="text-sm text-muted-foreground">jobsethiopiaofficial@gmail.com</p>
               </div>
             </div>
           </div>

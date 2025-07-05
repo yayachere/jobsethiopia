@@ -95,8 +95,8 @@ export default function AdminPage() {
         {/* Header */}
         <div className="flex justify-between items-center mb-8">
           <div>
-            <h1 className="text-3xl font-bold text-gray-900">Admin Dashboard</h1>
-            <p className="text-gray-600 mt-2">Manage job postings and applications</p>
+            <h1 className="text-3xl font-bold text-muted-foreground">Admin Dashboard</h1>
+            <p className="text-muted-foreground mt-2">Manage job postings and applications</p>
           </div>
 
           <Dialog open={isAddDialogOpen} onOpenChange={setIsAddDialogOpen}>

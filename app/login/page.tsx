@@ -86,12 +86,6 @@ export default function LoginPage() {
                 {isPending ? "Signing in..." : "Sign in"}
               </Button>
             </form>
-
-            <div className="mt-6 p-4 bg-primary/5 border border-primary/20 rounded-lg">
-              <p className="text-sm text-primary font-medium">Demo Credentials:</p>
-              <p className="text-sm text-muted-foreground">Email: admin@jobboard.com</p>
-              <p className="text-sm text-muted-foreground">Password: admin123</p>
-            </div>
           </CardContent>
         </Card>
       </div>
