@@ -3,6 +3,7 @@ import type { Metadata } from "next"
 import { Inter } from "next/font/google"
 import { ErrorBoundary } from "@/components/error-boundary"
 import { ThemeProvider } from "@/components/theme-provider"
+import Script from "next/script"
 import "./globals.css"
 
 const inter = Inter({ subsets: ["latin"] })
@@ -10,7 +11,7 @@ const inter = Inter({ subsets: ["latin"] })
 export const metadata: Metadata = {
   title: "JobsEthiopia - Find Your Dream Job",
   description: "Discover amazing job opportunities from top companies",
-    generator: 'Built with next.js and TypeScript',
+  generator: 'Built with next.js and TypeScript',
 }
 
 export default function RootLayout({
@@ -27,6 +28,12 @@ export default function RootLayout({
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
           <ErrorBoundary>{children}</ErrorBoundary>
         </ThemeProvider>
+        <Script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1529982313184279"
+          crossOrigin="anonymous"
+          strategy="afterInteractive"
+        />
       </body>
     </html>
   )
