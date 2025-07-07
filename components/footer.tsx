@@ -81,26 +81,26 @@ export default function Footer() {
                 </li>
                 <li>
                   <Link
-                    href="/"
+                    href="/about"
                     className="text-muted-foreground hover:text-foreground transition-colors text-sm"
                   >
-                    Companies
+                    About Us
                   </Link>
                 </li>
                 <li>
                   <Link
-                    href="/"
+                    href="/contact"
                     className="text-muted-foreground hover:text-foreground transition-colors text-sm"
                   >
-                    Post a Job
+                    Contact Us
                   </Link>
                 </li>
                 <li>
                   <Link
-                    href="/"
+                    href="/privacy"
                     className="text-muted-foreground hover:text-foreground transition-colors text-sm"
                   >
-                    Career Advice
+                    Privacy Policy and Terms
                   </Link>
                 </li>
               </ul>
