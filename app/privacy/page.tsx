@@ -38,8 +38,8 @@ const page = () => {
                 <h2 className='mt-4'>2. Cookies and Analytics</h2>
                 <p>To improve website performance and user experience, we may use basic, non-identifying cookies or third-party analytics tools 
                     (e.g., Google Analytics) to track general usage patterns like:
-                    
-                    <ul className="space-y-2 mt-2">
+                </p>
+                <ul className="space-y-2 mt-2">
                         <li className="flex items-start">
                         <span className="inline-block w-2 h-2 bg-blue-600 rounded-full mt-2 mr-3 flex-shrink-0"></span>
                         <span className="text-muted-foreground">Pages visited</span>
@@ -53,7 +53,6 @@ const page = () => {
                         <span className="text-muted-foreground">Browser type</span>
                         </li>
                     </ul>
-                </p>
                 <p>This data is aggregated and anonymized, and it helps us understand how users interact with our content — 
                     but it cannot be used to identify you personally.
                 </p>
@@ -86,33 +85,31 @@ const page = () => {
                     <p>By using this website, you agree to the following terms:</p>
                     <h2>1. Purpose of the Platform</h2>
                     <p>JobsEthiopia is not a recruitment agency. We do not accept or process job applications on behalf of employers. Instead, we:
-                        <ul className="space-y-2 mt-2">
-                            <li className="flex items-start">
-                                <span className="inline-block w-2 h-2 bg-blue-600 rounded-full mt-2 mr-3 flex-shrink-0"></span>
-                                <span className="text-muted-foreground">Publish job vacancies from trusted employers and organizations.</span>
-                            </li>
-                            <li className="flex items-start">
-                                <span className="inline-block w-2 h-2 bg-blue-600 rounded-full mt-2 mr-3 flex-shrink-0"></span>
-                                <span className="text-muted-foreground">Redirect users to the official websites or application platforms owned by the 
-                                    employers</span>
-                            </li>
-                        </ul>
                     </p>
+                    <ul className="space-y-2 mt-2">
+                        <li className="flex items-start">
+                            <span className="inline-block w-2 h-2 bg-blue-600 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                            <span className="text-muted-foreground">Publish job vacancies from trusted employers and organizations.</span>
+                        </li>
+                        <li className="flex items-start">
+                            <span className="inline-block w-2 h-2 bg-blue-600 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                            <span className="text-muted-foreground">Redirect users to the official websites or application platforms owned by the 
+                                employers</span>
+                        </li>
+                    </ul>
                     <h2>2. User Responsibility</h2>
-                    <p>
-                        <ul className="space-y-2 mt-2">
-                            <li className="flex items-start">
-                                <span className="inline-block w-2 h-2 bg-blue-600 rounded-full mt-2 mr-3 flex-shrink-0"></span>
-                                <span className="text-muted-foreground">You are responsible for verifying the legitimacy and details of any job post before 
-                                    applying.</span>
-                            </li>
-                            <li className="flex items-start">
-                                <span className="inline-block w-2 h-2 bg-blue-600 rounded-full mt-2 mr-3 flex-shrink-0"></span>
-                                <span className="text-muted-foreground">JobsEthiopia is not responsible for the hiring process, application outcomes, or 
-                                    communications between you and the employer.</span>
-                            </li>
-                        </ul>     
-                    </p>
+                    <ul className="space-y-2 mt-2">
+                        <li className="flex items-start">
+                            <span className="inline-block w-2 h-2 bg-blue-600 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                            <span className="text-muted-foreground">You are responsible for verifying the legitimacy and details of any job post before 
+                                applying.</span>
+                        </li>
+                        <li className="flex items-start">
+                            <span className="inline-block w-2 h-2 bg-blue-600 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                            <span className="text-muted-foreground">JobsEthiopia is not responsible for the hiring process, application outcomes, or 
+                                communications between you and the employer.</span>
+                        </li>
+                    </ul>
                     <h2>3. Accuracy of Listings</h2>
                     <p>We strive to ensure the information on JobsEthiopia is accurate and up to date. However, we do not guarantee the completeness, 
                         reliability, or current validity of each job post, especially since opportunities may close or change after publishing.</p>
