@@ -23,27 +23,30 @@ const page = () => {
         setIsPending(true);
         setAlertMessage("");
 
-        const formData = new FormData(e.currentTarget);
-        setName(formData.get("name") as string);
-        setEmail(formData.get("email") as string);
-        setMessage(formData.get("message") as string);
-
-        // Simulate a network request
         try {
-            // Here you would typically send the data to your server
-            console.log({ name, email, message });
-            setAlertMessage("Thank you for your message!");
+            const res = await fetch("/api/contact", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ name, email, message }),
+            });
+
+            if (res.ok) {
+            setAlertMessage("✅ Your message has been sent successfully!");
+            } else {
+            setAlertMessage("❌ Failed to send your message. Please try again.");
+            }
         } catch (error) {
-            setAlertMessage("Failed to send your message. Please try again later.");
+            setAlertMessage("❌ An unexpected error occurred.");
         } finally {
             setIsPending(false);
-            // Reset form fields
             setName("");
             setEmail("");
             setMessage("");
         }
+    };
 
-    }
     
   return (
     <Layout>

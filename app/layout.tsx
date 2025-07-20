@@ -27,7 +27,7 @@ export default function RootLayout({
      crossOrigin="anonymous"></Script>
       </head>
       <body className={inter.className}>
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+        <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false} disableTransitionOnChange>
           <ErrorBoundary>{children}</ErrorBoundary>
         </ThemeProvider>
       </body>
