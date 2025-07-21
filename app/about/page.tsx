@@ -21,16 +21,28 @@ const page = () => {
                 <CardTitle>About Us</CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-muted-foreground leading-relaxed whitespace-pre-line">
-                    JobsEthiopia is a modern job listing platform committed to bridging the gap between employers and job seekers 
-                    across Ethiopia. Founded with the vision of making job search more accessible, transparent, and efficient, 
-                    JobsEthiopia is designed to empower individuals to find meaningful employment and help organizations attract the
-                     right talent.
-
-                    We understand that job hunting can be overwhelming — that's why we provide reliable, up-to-date, and verified job
-                     opportunities across a wide range of sectors including government, NGOs, private companies, finance, healthcare, 
-                     education, and technology. Whether you're a fresh graduate looking for your first opportunity or a professional 
-                     exploring your next career move, JobsEthiopia is here to support your journey.
+                <p className="text-muted-foreground leading-relaxed whitespace-pre-line mt-4">
+                    JobsEthiopia is a trusted Ethiopian job portal dedicated to connecting job seekers with reliable employment 
+                    opportunities across the country. Our mission is to make job searching simpler, more transparent, and accessible for 
+                    everyone — from recent graduates to experienced professionals.
+                </p>
+                <p className="text-muted-foreground leading-relaxed whitespace-pre-line mt-4">
+                  We curate and publish verified job listings sourced directly from reputable organizations including government 
+                  institutions, NGOs, private companies, and international agencies. Each listing is reviewed for clarity, relevance, 
+                  and authenticity to ensure users access only accurate and up-to-date information.
+                </p>
+                <p className="text-muted-foreground leading-relaxed whitespace-pre-line mt-4">
+                  JobsEthiopia does not host or generate job content. All opportunities are sourced from external employers and link 
+                  directly to the original application portals. We also do not collect personal data, require user registration, or 
+                  process applications ourselves. 
+                </p>
+                <p className="text-muted-foreground leading-relaxed whitespace-pre-line mt-4">
+                  Whether you're looking for your first job or planning your next career move, JobsEthiopia empowers you to explore 
+                  opportunities confidently through a centralized and user-friendly interface.
+                </p>
+                <p className="text-muted-foreground leading-relaxed whitespace-pre-line mt-4">
+                  We are proud to support job seekers in Ethiopia and continually strive to be a leading platform for employment 
+                  discovery.
                 </p>
               </CardContent>
             </Card>

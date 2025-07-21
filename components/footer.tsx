@@ -97,10 +97,26 @@ export default function Footer() {
                 </li>
                 <li>
                   <Link
+                    href="/disclaimer"
+                    className="text-muted-foreground hover:text-foreground transition-colors text-sm"
+                  >
+                    Disclaimer
+                  </Link>
+                </li>
+                <li>
+                  <Link
                     href="/privacy"
                     className="text-muted-foreground hover:text-foreground transition-colors text-sm"
                   >
-                    Privacy Policy and Terms
+                    Privacy Policy
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/terms"
+                    className="text-muted-foreground hover:text-foreground transition-colors text-sm"
+                  >
+                    Terms and Conditions
                   </Link>
                 </li>
               </ul>
@@ -166,12 +182,9 @@ export default function Footer() {
 
         {/* Bottom Footer */}
         <div className="py-6">
-          <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+          <div className="flex flex-col md:flex-row justify-center items-center space-y-4 md:space-y-0">
             <div className="flex flex-col md:flex-row items-center space-y-2 md:space-y-0 md:space-x-6">
               <p className="text-sm text-muted-foreground">© {currentYear} JobsEthiopia. All rights reserved.</p>
-            </div>
-            <div className="flex items-center space-x-4">
-              <p className="text-sm text-muted-foreground">Made with ❤️ for job seekers</p>
             </div>
           </div>
         </div>
