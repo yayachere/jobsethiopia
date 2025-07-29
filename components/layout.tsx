@@ -4,7 +4,7 @@ import type React from "react"
 import { useEffect, useState } from "react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { Briefcase, Home, Settings, LogOut, User } from "lucide-react"
+import { Briefcase, Home, Settings, LogOut, User, Lightbulb, LockIcon } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import {
   DropdownMenu,
@@ -83,6 +83,17 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                 <Home className="h-4 w-4" />
                 <span>Jobs</span>
               </Link>
+              <Link
+                href="/"
+                className={`flex items-center space-x-1 px-3 py-2 rounded-md text-sm font-medium transition-colors ${
+                  pathname === "/"
+                    ? "text-primary bg-primary/10"
+                    : "text-muted-foreground hover:text-foreground hover:bg-accent"
+                }`}
+              >
+                <Lightbulb className="h-4 w-4" />
+                <span>Tips</span>
+              </Link>
 
               <ThemeToggle />
 
@@ -101,6 +112,12 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                       <Link href="/admin" className="flex items-center space-x-2">
                         <Settings className="h-4 w-4" />
                         <span>Admin Dashboard</span>
+                      </Link>
+                    </DropdownMenuItem>
+                    <DropdownMenuItem asChild>
+                      <Link href="/admin" className="flex items-center space-x-2">
+                        <LockIcon className="h-4 w-4" />
+                        <span>Change Password</span>
                       </Link>
                     </DropdownMenuItem>
                     <DropdownMenuSeparator />

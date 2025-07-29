@@ -9,8 +9,8 @@ import "./globals.css"
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "JobsEthiopia - Find Your Dream Job",
-  description: "Discover amazing job opportunities from top companies",
+  title: "JobsEthiopia - Find Your Dream Job in Ethiopia",
+  description: "Discover amazing job opportunities from top companies in Ethiopia. Your career starts here.",
   generator: 'Built with next.js and TypeScript',
 }
 

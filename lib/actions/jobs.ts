@@ -92,6 +92,25 @@ export async function getJobById(id: string): Promise<Job | null> {
   }
 }
 
+export async function getRecentJobs(limit = 5): Promise<Job[]> {
+  try {
+    const jobs = await sql`
+      SELECT 
+        id::text,
+        title,
+        company,
+        application_link
+      FROM jobs 
+      ORDER BY posted_date DESC
+      LIMIT ${limit}
+    `
+    return jobs.rows as Job[]
+  } catch (error) {
+    console.error("Error fetching recent jobs:", error)
+    return []
+  }
+}
+
 export async function createJob(formData: FormData) {
   const session = await getSession()
   if (!session) {
