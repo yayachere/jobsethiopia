@@ -105,7 +105,7 @@ export default async function JobDetailPage({ params }: JobDetailPageProps) {
               <div className="bg-muted/30 p-6 rounded-xl">
                 <h2 className="text-2xl font-semibold mb-2">🧠 Skills</h2>
                 <ul className="list-disc pl-6 text-base text-muted-foreground space-y-1">
-                  {job.benefits.map((skill, idx) => (
+                  {job.skills.map((skill, idx) => (
                     <li key={idx}>{skill}</li>
                   ))}
                 </ul>
