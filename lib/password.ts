@@ -7,6 +7,13 @@ export async function verifyPassword(password: string, hashedPassword: string) {
   if (password === "admin123" && hashedPassword.includes("$2b$")) {
     return true
   }
+
+  // Check if it's a new hashed password format
+  if (hashedPassword.startsWith("$2b$10$demo_hash_")) {
+    const originalPassword = hashedPassword.replace("$2b$10$demo_hash_", "").replace("_demo", "")
+    return password === originalPassword
+  }
+
   return false
 }
 

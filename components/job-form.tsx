@@ -2,43 +2,51 @@
 
 import type React from "react"
 import { useState, useTransition } from "react"
+import { Plus, X, Calendar } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { Card, CardContent } from "@/components/ui/card"
 import { Alert, AlertDescription } from "@/components/ui/alert"
-import { X, Plus } from "lucide-react"
-import { createJob, updateJob, type Job } from "@/lib/actions/jobs"
+import { Calendar as CalendarComponent } from "@/components/ui/calendar"
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
+import { cn } from "@/lib/utils"
+import { format } from "date-fns"
+import { updateJob, type Job } from "@/lib/actions/jobs"
 
 interface JobFormProps {
-  job?: Job
+  job: Job
   onSuccess: () => void
 }
+
+const jobTypes = ["Full-Time", "Part-time", "Contract", "Freelance", "Internship"]
 
 export default function JobForm({ job, onSuccess }: JobFormProps) {
   const [isPending, startTransition] = useTransition()
   const [error, setError] = useState("")
   const [formData, setFormData] = useState({
-    title: job?.title || "",
-    company: job?.company || "",
-    location: job?.location || "",
-    type: job?.type || "",
-    salary: job?.salary || "",
-    description: job?.description || "",
-    requirements: job?.requirements || [""],
-    benefits: job?.benefits || [""],
-    applicationDeadline: job?.application_deadline || "",
-    contactEmail: job?.contact_email || "",
-    companyWebsite: job?.company_website || "",
-    applicationLink: job?.application_link || "",
-    applicationAddress: job?.application_address || "",
-    education: job?.education || [""],
-    experience: job?.experience || [""],
-    skills: job?.skills || [""],
-    introduction: job?.introduction || "",
+    title: job.title || "",
+    company: job.company || "",
+    location: job.location || "",
+    type: job.type || "",
+    salary: job.salary || "",
+    description: job.description || "",
+    requirements: job.requirements || [""],
+    benefits: job.benefits || [""],
+    applicationDeadline: job.application_deadline || "",
+    contactEmail: job.contact_email || "",
+    companyWebsite: job.company_website || "",
+    applicationLink: job.application_link || "",
+    applicationAddress: job.application_address || "",
+    education: job.education || [""],
+    experience: job.experience || [""],
+    skills: job.skills || [""],
+    introduction: job.introduction || "",
   })
+  const [deadline, setDeadline] = useState<Date | undefined>(
+    job.application_deadline ? new Date(job.application_deadline) : undefined,
+  )
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -51,7 +59,7 @@ export default function JobForm({ job, onSuccess }: JobFormProps) {
     form.append("type", formData.type)
     form.append("salary", formData.salary)
     form.append("description", formData.description)
-    form.append("applicationDeadline", formData.applicationDeadline)
+    form.append("applicationDeadline", deadline ? deadline.toISOString().split("T")[0] : "")
     form.append("contactEmail", formData.contactEmail)
     form.append("requirements", JSON.stringify(formData.requirements.filter((req) => req.trim() !== "")))
     form.append("benefits", JSON.stringify(formData.benefits.filter((benefit) => benefit.trim() !== "")))
@@ -61,16 +69,11 @@ export default function JobForm({ job, onSuccess }: JobFormProps) {
     form.append("education", JSON.stringify(formData.education.filter((edu) => edu.trim() !== "")))
     form.append("experience", JSON.stringify(formData.experience.filter((exp) => exp.trim() !== "")))
     form.append("skills", JSON.stringify(formData.skills.filter((skill) => skill.trim() !== "")))
-    form.append("introduction", job?.introduction || "") // Optional field for job introduction
+    form.append("introduction", formData.introduction)
 
     startTransition(async () => {
       try {
-        let result
-        if (job) {
-          result = await updateJob(job.id, form)
-        } else {
-          result = await createJob(form)
-        }
+        const result = await updateJob(job.id, form)
 
         if (result?.error) {
           setError(result.error)
@@ -83,109 +86,62 @@ export default function JobForm({ job, onSuccess }: JobFormProps) {
     })
   }
 
-  const addRequirement = () => {
+  // Array field management functions
+  const addArrayItem = (field: keyof typeof formData) => {
     setFormData((prev) => ({
       ...prev,
-      requirements: [...prev.requirements, ""],
+      [field]: [...(prev[field] as string[]), ""],
     }))
   }
 
-  const removeRequirement = (index: number) => {
+  const removeArrayItem = (field: keyof typeof formData, index: number) => {
     setFormData((prev) => ({
       ...prev,
-      requirements: prev.requirements.filter((_, i) => i !== index),
+      [field]: (prev[field] as string[]).filter((_, i) => i !== index),
     }))
   }
 
-  const updateRequirement = (index: number, value: string) => {
+  const updateArrayItem = (field: keyof typeof formData, index: number, value: string) => {
     setFormData((prev) => ({
       ...prev,
-      requirements: prev.requirements.map((req, i) => (i === index ? value : req)),
+      [field]: (prev[field] as string[]).map((item, i) => (i === index ? value : item)),
     }))
   }
 
-  const addExperience = () => {
-    setFormData((prev) => ({
-      ...prev,
-      experience: [...prev.experience, ""],
-    }))
-  }
+  // Render array input field
+  const renderArrayField = (field: keyof typeof formData, label: string, required = false, placeholder = "") => {
+    const items = (formData[field] as string[]) || [""]
 
-  const removeExperience = (index: number) => {
-    setFormData((prev) => ({
-      ...prev,
-      experience: prev.experience.filter((_, i) => i !== index),
-    }))
-  }
-
-  const updateExperience = (index: number, value: string) => {
-    setFormData((prev) => ({
-      ...prev,
-      experience: prev.experience.map((req, i) => (i === index ? value : req)),
-    }))
-  }
-
-  const addEducation = () => {
-    setFormData((prev) => ({
-      ...prev,
-      education: [...prev.education, ""],
-    }))
-  }
-
-  const removeEducation = (index: number) => {
-    setFormData((prev) => ({
-      ...prev,
-      education: prev.education.filter((_, i) => i !== index),
-    }))
-  }
-
-  const updateEducation = (index: number, value: string) => {
-    setFormData((prev) => ({
-      ...prev,
-      education: prev.education.map((req, i) => (i === index ? value : req)),
-    }))
-  }
-
-  const addSkills = () => {
-    setFormData((prev) => ({
-      ...prev,
-      skills: [...prev.skills, ""],
-    }))
-  }
-
-  const removeSkills = (index: number) => {
-    setFormData((prev) => ({
-      ...prev,
-      skills: prev.skills.filter((_, i) => i !== index),
-    }))
-  }
-
-  const updateSkills = (index: number, value: string) => {
-    setFormData((prev) => ({
-      ...prev,
-      skills: prev.skills.map((benefit, i) => (i === index ? value : benefit)),
-    }))
-  }
-
-  const addBenefit = () => {
-    setFormData((prev) => ({
-      ...prev,
-      benefits: [...prev.benefits, ""],
-    }))
-  }
-
-  const removeBenefit = (index: number) => {
-    setFormData((prev) => ({
-      ...prev,
-      benefits: prev.benefits.filter((_, i) => i !== index),
-    }))
-  }
-
-  const updateBenefit = (index: number, value: string) => {
-    setFormData((prev) => ({
-      ...prev,
-      benefits: prev.benefits.map((benefit, i) => (i === index ? value : benefit)),
-    }))
+    return (
+      <div className="space-y-2">
+        <div className="flex justify-between items-center">
+          <Label className="text-sm font-medium">
+            {label} {required && <span className="text-red-500">*</span>}
+          </Label>
+          <Button type="button" variant="outline" size="sm" onClick={() => addArrayItem(field)}>
+            <Plus className="h-3 w-3 mr-1" />
+            Add {label.slice(0, -1)}
+          </Button>
+        </div>
+        <div className="space-y-2">
+          {items.map((item, index) => (
+            <div key={index} className="flex gap-2">
+              <Input
+                value={item}
+                onChange={(e) => updateArrayItem(field, index, e.target.value)}
+                placeholder={placeholder || `Enter ${label.toLowerCase().slice(0, -1)}`}
+                required={required && index === 0}
+              />
+              {items.length > 1 && (
+                <Button type="button" variant="outline" size="sm" onClick={() => removeArrayItem(field, index)}>
+                  <X className="h-3 w-3" />
+                </Button>
+              )}
+            </div>
+          ))}
+        </div>
+      </div>
+    )
   }
 
   return (
@@ -237,11 +193,11 @@ export default function JobForm({ job, onSuccess }: JobFormProps) {
               <SelectValue placeholder="Select job type" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="Full-time">Full-time</SelectItem>
-              <SelectItem value="Part-time">Part-time</SelectItem>
-              <SelectItem value="Contract">Contract</SelectItem>
-              <SelectItem value="Freelance">Freelance</SelectItem>
-              <SelectItem value="Internship">Internship</SelectItem>
+              {jobTypes.map((type) => (
+                <SelectItem key={type} value={type}>
+                  {type}
+                </SelectItem>
+              ))}
             </SelectContent>
           </Select>
         </div>
@@ -271,7 +227,7 @@ export default function JobForm({ job, onSuccess }: JobFormProps) {
           <Label htmlFor="companyWebsite">Company Website</Label>
           <Input
             id="companyWebsite"
-            type="text"
+            type="url"
             value={formData.companyWebsite}
             onChange={(e) => setFormData((prev) => ({ ...prev, companyWebsite: e.target.value }))}
             placeholder="https://example.com"
@@ -288,14 +244,12 @@ export default function JobForm({ job, onSuccess }: JobFormProps) {
             placeholder="https://example.com/apply"
           />
         </div>
-
       </div>
 
       <div className="space-y-2">
         <Label htmlFor="applicationAddress">Application Address</Label>
         <Input
           id="applicationAddress"
-          type="text"
           value={formData.applicationAddress}
           onChange={(e) => setFormData((prev) => ({ ...prev, applicationAddress: e.target.value }))}
           placeholder="123 Main St, City, State, Zip"
@@ -303,14 +257,21 @@ export default function JobForm({ job, onSuccess }: JobFormProps) {
       </div>
 
       <div className="space-y-2">
-        <Label htmlFor="applicationDeadline">Application Deadline *</Label>
-        <Input
-          id="applicationDeadline"
-          type="date"
-          value={formData.applicationDeadline}
-          onChange={(e) => setFormData((prev) => ({ ...prev, applicationDeadline: e.target.value }))}
-          required
-        />
+        <Label>Application Deadline *</Label>
+        <Popover>
+          <PopoverTrigger asChild>
+            <Button
+              variant="outline"
+              className={cn("w-full justify-start text-left font-normal", !deadline && "text-muted-foreground")}
+            >
+              <Calendar className="mr-2 h-4 w-4" />
+              {deadline ? format(deadline, "PPP") : "Pick a date"}
+            </Button>
+          </PopoverTrigger>
+          <PopoverContent className="w-auto p-0">
+            <CalendarComponent mode="single" selected={deadline} onSelect={setDeadline} initialFocus />
+          </PopoverContent>
+        </Popover>
       </div>
 
       <div className="space-y-2">
@@ -319,7 +280,8 @@ export default function JobForm({ job, onSuccess }: JobFormProps) {
           id="introduction"
           value={formData.introduction}
           onChange={(e) => setFormData((prev) => ({ ...prev, introduction: e.target.value }))}
-          rows={6}
+          rows={3}
+          placeholder="Brief introduction about the company or position"
         />
       </div>
 
@@ -334,152 +296,21 @@ export default function JobForm({ job, onSuccess }: JobFormProps) {
         />
       </div>
 
-      <Card>
-        <CardContent className="pt-6">
-          <div className="flex justify-between items-center mb-4">
-            <Label>Requirements *</Label>
-            <Button type="button" variant="outline" size="sm" onClick={addRequirement}>
-              <Plus className="h-4 w-4 mr-2" />
-              Add Requirement
-            </Button>
-          </div>
-          <div className="space-y-3">
-            {formData.requirements.map((requirement, index) => (
-              <div key={index} className="flex gap-2">
-                <Input
-                  value={requirement}
-                  onChange={(e) => updateRequirement(index, e.target.value)}
-                  placeholder="Enter requirement"
-                  required
-                />
-                {formData.requirements.length > 1 && (
-                  <Button type="button" variant="outline" size="sm" onClick={() => removeRequirement(index)}>
-                    <X className="h-4 w-4" />
-                  </Button>
-                )}
-              </div>
-            ))}
-          </div>
-        </CardContent>
-      </Card>
-
-      <Card>
-        <CardContent className="pt-6">
-          <div className="flex justify-between items-center mb-4">
-            <Label>Experience *</Label>
-            <Button type="button" variant="outline" size="sm" onClick={addExperience}>
-              <Plus className="h-4 w-4 mr-2" />
-              Add Experience
-            </Button>
-          </div>
-          <div className="space-y-3">
-            {formData.experience.map((experience, index) => (
-              <div key={index} className="flex gap-2">
-                <Input
-                  value={experience}
-                  onChange={(e) => updateExperience(index, e.target.value)}
-                  placeholder="Enter experience"
-                  required
-                />
-                {formData.experience.length > 1 && (
-                  <Button type="button" variant="outline" size="sm" onClick={() => removeExperience(index)}>
-                    <X className="h-4 w-4" />
-                  </Button>
-                )}
-              </div>
-            ))}
-          </div>
-        </CardContent>
-      </Card>
-
-      <Card>
-        <CardContent className="pt-6">
-          <div className="flex justify-between items-center mb-4">
-            <Label>Education *</Label>
-            <Button type="button" variant="outline" size="sm" onClick={addEducation}>
-              <Plus className="h-4 w-4 mr-2" />
-              Add Education
-            </Button>
-          </div>
-          <div className="space-y-3">
-            {formData.education.map((education, index) => (
-              <div key={index} className="flex gap-2">
-                <Input
-                  value={education}
-                  onChange={(e) => updateEducation(index, e.target.value)}
-                  placeholder="Enter education"
-                  required
-                />
-                {formData.education.length > 1 && (
-                  <Button type="button" variant="outline" size="sm" onClick={() => removeEducation(index)}>
-                    <X className="h-4 w-4" />
-                  </Button>
-                )}
-              </div>
-            ))}
-          </div>
-        </CardContent>
-      </Card>
-
-      <Card>
-        <CardContent className="pt-6">
-          <div className="flex justify-between items-center mb-4">
-            <Label>Skills</Label>
-            <Button type="button" variant="outline" size="sm" onClick={addSkills}>
-              <Plus className="h-4 w-4 mr-2" />
-              Add Skills
-            </Button>
-          </div>
-          <div className="space-y-3">
-            {formData.skills.map((skills, index) => (
-              <div key={index} className="flex gap-2">
-                <Input
-                  value={skills}
-                  onChange={(e) => updateSkills(index, e.target.value)}
-                  placeholder="Enter skills"
-                />
-                {formData.skills.length > 1 && (
-                  <Button type="button" variant="outline" size="sm" onClick={() => removeSkills(index)}>
-                    <X className="h-4 w-4" />
-                  </Button>
-                )}
-              </div>
-            ))}
-          </div>
-        </CardContent>
-      </Card>
-
-      <Card>
-        <CardContent className="pt-6">
-          <div className="flex justify-between items-center mb-4">
-            <Label>Benefits</Label>
-            <Button type="button" variant="outline" size="sm" onClick={addBenefit}>
-              <Plus className="h-4 w-4 mr-2" />
-              Add Benefit
-            </Button>
-          </div>
-          <div className="space-y-3">
-            {formData.benefits.map((benefit, index) => (
-              <div key={index} className="flex gap-2">
-                <Input
-                  value={benefit}
-                  onChange={(e) => updateBenefit(index, e.target.value)}
-                  placeholder="Enter benefit"
-                />
-                {formData.benefits.length > 1 && (
-                  <Button type="button" variant="outline" size="sm" onClick={() => removeBenefit(index)}>
-                    <X className="h-4 w-4" />
-                  </Button>
-                )}
-              </div>
-            ))}
-          </div>
-        </CardContent>
-      </Card>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="space-y-4">
+          {renderArrayField("requirements", "Requirements", true, "Enter requirement")}
+          {renderArrayField("experience", "Experience", false, "Enter experience requirement")}
+          {renderArrayField("skills", "Skills", false, "Enter required skill")}
+        </div>
+        <div className="space-y-4">
+          {renderArrayField("education", "Education", false, "Enter education requirement")}
+          {renderArrayField("benefits", "Benefits", false, "Enter benefit")}
+        </div>
+      </div>
 
       <div className="flex justify-end space-x-4">
         <Button type="submit" disabled={isPending}>
-          {isPending ? (job ? "Updating..." : "Creating...") : job ? "Update Job" : "Create Job"}
+          {isPending ? "Updating..." : "Update Job"}
         </Button>
       </div>
     </form>

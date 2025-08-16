@@ -1,48 +1,44 @@
 "use client"
 
 import Link from "next/link"
-import { Briefcase, Mail, Facebook, Twitter, Linkedin, Instagram } from "lucide-react"
-import { Button } from "@/components/ui/button"
-import { Separator } from "@/components/ui/separator"
+import { Briefcase, Mail, Facebook, Twitter, Linkedin, Instagram } from 'lucide-react'
+import { Button } from "./ui/button"
 
 const telegramLink = "https://t.me/JobsEthiopiaOfficial"
 const tiktokLink = "https://www.tiktok.com/@jobsethiopiaofficial?is_from_webapp=1&sender_device=pc"
 const facebookLink = "https://web.facebook.com/profile.php?viewas=100000686899395&id=61578169974603"
 const instagramLink = "https://www.instagram.com/jobsethiopia/"
 
-// Custom TikTok and Telegram icons as SVG components
+// Custom TikTok icon component
 const TikTokIcon = ({ className }: { className?: string }) => (
-  <svg className={className} viewBox="0 0 24 24" fill="currentColor">
-    <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z" />
+  <svg className={className} viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+    <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43V7.56a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.05z" />
   </svg>
 )
 
+// Custom Telegram icon component
 const TelegramIcon = ({ className }: { className?: string }) => (
-  <svg className={className} viewBox="0 0 24 24" fill="currentColor">
-    <path d="m20.665 3.717-17.73 6.837c-1.21.486-1.203 1.161-.222 1.462l4.552 1.42 10.532-6.645c.498-.303.953-.14.579.192l-8.533 7.701h-.002l.002.001-.314 4.692c.46 0 .663-.211.921-.46l2.211-2.15 4.599 3.397c.848.467 1.457.227 1.668-.785L21.9 4.334c.252-1.017-.375-1.474-1.235-1.119z" />
+  <svg className={className} viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+    <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z" />
   </svg>
 )
 
 export default function Footer() {
-  const currentYear = new Date().getFullYear()
-
   return (
-    <footer className="bg-card border-t border-border mt-16">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Main Footer Content */}
-        <div className="py-12">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {/* Company Info */}
-            <div className="space-y-4">
-              <div className="flex items-center space-x-2">
-                <Briefcase className="h-8 w-8 text-primary" />
-                <span className="text-xl font-bold text-foreground">JobsEthiopia</span>
-              </div>
-              <p className="text-muted-foreground text-sm leading-relaxed">
-                Your trusted partner in finding the perfect career opportunity. We connect talented professionals with
-                top companies worldwide.
-              </p>
-              <div className="flex space-x-4">
+    <footer className="bg-background border-t border-border mt-16">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {/* Company Info */}
+          <div className="space-y-4">
+            <div className="flex items-center space-x-2">
+              <Briefcase className="h-6 w-6 text-primary" />
+              <span className="text-lg font-bold text-foreground">JobsEthiopia</span>
+            </div>
+            <p className="text-muted-foreground text-sm">
+              Connecting talented professionals with amazing opportunities across Ethiopia. Your career journey starts
+              here.
+            </p>
+            <div className="flex space-x-4">
                 <Button variant="ghost" size="sm" className="p-2">
                   <Link href={facebookLink} target="_blank" rel="noopener noreferrer">
                   <Facebook className="h-4 w-4" />
@@ -68,123 +64,106 @@ export default function Footer() {
                   </Link>
                 </Button>
               </div>
-            </div>
+          </div>
 
-            {/* Quick Links */}
-            <div className="space-y-4">
-              <h3 className="text-lg font-semibold text-foreground">Quick Links</h3>
-              <ul className="space-y-2">
-                <li>
-                  <Link href="/" className="text-muted-foreground hover:text-foreground transition-colors text-sm">
-                    Browse Jobs
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/about"
-                    className="text-muted-foreground hover:text-foreground transition-colors text-sm"
-                  >
-                    About Us
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/contact"
-                    className="text-muted-foreground hover:text-foreground transition-colors text-sm"
-                  >
-                    Contact Us
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/disclaimer"
-                    className="text-muted-foreground hover:text-foreground transition-colors text-sm"
-                  >
-                    Disclaimer
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/privacy"
-                    className="text-muted-foreground hover:text-foreground transition-colors text-sm"
-                  >
-                    Privacy Policy
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/terms"
-                    className="text-muted-foreground hover:text-foreground transition-colors text-sm"
-                  >
-                    Terms and Conditions
-                  </Link>
-                </li>
-              </ul>
-            </div>
+          {/* Quick Links */}
+          <div className="space-y-4">
+            <h3 className="text-sm font-semibold text-foreground uppercase tracking-wider">Quick Links</h3>
+            <ul className="space-y-2">
+              <li>
+                <Link href="/" className="text-muted-foreground hover:text-primary transition-colors text-sm">
+                  Browse Jobs
+                </Link>
+              </li>
+              <li>
+                <Link href="/tips" className="text-muted-foreground hover:text-primary transition-colors text-sm">
+                  Career Tips
+                </Link>
+              </li>
+              <li>
+                <Link href="/disclaimer" className="text-muted-foreground hover:text-primary transition-colors text-sm">
+                  Disclaimer
+                </Link>
+              </li>
+            </ul>
+          </div>
 
-            {/* Job Categories */}
-            <div className="space-y-4">
-              <h3 className="text-lg font-semibold text-foreground">Popular Categories</h3>
-              <ul className="space-y-2">
-                <li>
-                  <Link
-                    href="/"
-                    className="text-muted-foreground hover:text-foreground transition-colors text-sm"
-                  >
-                    Technology
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/"
-                    className="text-muted-foreground hover:text-foreground transition-colors text-sm"
-                  >
-                    Marketing
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/"
-                    className="text-muted-foreground hover:text-foreground transition-colors text-sm"
-                  >
-                    Finance
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/"
-                    className="text-muted-foreground hover:text-foreground transition-colors text-sm"
-                  >
-                    Healthcare
-                  </Link>
-                </li>
-              </ul>
+          {/* Popular Categories */}
+          <div className="space-y-4">
+            <h3 className="text-sm font-semibold text-foreground uppercase tracking-wider">Popular Categories</h3>
+            <ul className="space-y-2">
+              <li>
+                <Link
+                  href="/?category=technology"
+                  className="text-muted-foreground hover:text-primary transition-colors text-sm"
+                >
+                  Technology
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/?category=marketing"
+                  className="text-muted-foreground hover:text-primary transition-colors text-sm"
+                >
+                  Marketing
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/?category=finance"
+                  className="text-muted-foreground hover:text-primary transition-colors text-sm"
+                >
+                  Finance
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/?category=healthcare"
+                  className="text-muted-foreground hover:text-primary transition-colors text-sm"
+                >
+                  Healthcare
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/?category=design"
+                  className="text-muted-foreground hover:text-primary transition-colors text-sm"
+                >
+                  Design
+                </Link>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        {/* Contact Info */}
+        <div className="mt-8 pt-8 border-t border-border">
+          <div className="flex flex-col md:flex-row justify-center items-center">
+            <div className="flex items-center space-x-2 text-muted-foreground">
+              <Mail className="h-4 w-4" />
+              <span className="text-sm">Email us at:</span>
+            </div>
+            <div className="ml-2">
+              <Link target="_blank" href="mailto:jobsethiopaiofficial@gmail.com" className="text-primary hover:underline">
+                <span className="text-sm">jobsethiopaiofficial@gmail.com</span>
+              </Link>
             </div>
           </div>
         </div>
 
-        <Separator />
-
-        {/* Contact Info - Only Email Now */}
-        <div className="py-8">
-          <div className="flex justify-center">
-            <div className="flex items-center space-x-3">
-              <Mail className="h-5 w-5 text-primary" />
-              <div>
-                <p className="text-sm font-medium text-foreground">Email Us</p>
-                <p className="text-sm text-muted-foreground">jobsethiopiaofficial@gmail.com</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <Separator />
-
-        {/* Bottom Footer */}
-        <div className="py-6">
-          <div className="flex flex-col md:flex-row justify-center items-center space-y-4 md:space-y-0">
-            <div className="flex flex-col md:flex-row items-center space-y-2 md:space-y-0 md:space-x-6">
-              <p className="text-sm text-muted-foreground">© {currentYear} JobsEthiopia. All rights reserved.</p>
+        {/* Bottom Bar */}
+        <div className="mt-8 pt-8 border-t border-border">
+          <div className="flex flex-col md:flex-row justify-between items-center">
+            <p className="text-muted-foreground text-sm">
+              © {new Date().getFullYear()} JobsEthiopia. All rights reserved.
+            </p>
+            <div className="flex space-x-6 mt-4 md:mt-0">
+              <Link href="/privacy" className="text-muted-foreground hover:text-primary transition-colors text-sm">
+                Privacy Policy
+              </Link>
+              <Link href="/terms" className="text-muted-foreground hover:text-primary transition-colors text-sm">
+                Terms and Conditions
+              </Link>
             </div>
           </div>
         </div>
