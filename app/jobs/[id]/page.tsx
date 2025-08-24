@@ -369,7 +369,7 @@ export default function JobDetailPage() {
                       <div key={recentJob.id} className="border-b pb-4 last:border-b-0">
                         <Link href={`/jobs/${recentJob.id}`}>
                           <div className="block hover:bg-gray-50 p-2 rounded transition-colors cursor-pointer">
-                            <h4 className="font-semibold text-sm mb-1 text-gray-900 hover:text-blue-600 line-clamp-2">
+                            <h4 className="font-semibold text-sm mb-1 text-gray-600 hover:text-blue-600 line-clamp-2">
                               {recentJob.title}
                             </h4>
                             <p className="text-xs text-gray-600 mb-2">{recentJob.company}</p>

@@ -24,13 +24,39 @@ const jobCategories = [
   { label: "Accounting / Finance", description: "Jobs like accountant, auditor, financial analyst" },
   { label: "Admin / Secretarial", description: "Office assistants, executive secretaries, receptionists" },
   { label: "Advertising / Marketing / PR", description: "Digital marketers, brand managers, PR officers" },
-  { label: "ICT / Telecom / IT", description: "Developers, network engineers, cybersecurity experts" },
-  { label: "Education / Teaching / Training", description: "Teachers, trainers, curriculum designers" },
-  { label: "Engineering / Manufacturing", description: "Production engineers, QA, technicians" },
-]
+  { label: "Agriculture / Agro-processing / Forestry", description: "Agronomists, farm managers, food processing specialists" },
+  { label: "Architecture / Construction / Urban Planning", description: "Architects, civil engineers, site supervisors" },
+  { label: "Automotive / Mechanic / Maintenance", description: "Mechanical engineers, automotive technicians, maintenance staff" },
+  { label: "Aviation / Airlines / Aerospace", description: "Pilots, flight attendants, ground crew" },
+  { label: "Banking / Insurance / Financial Services", description: "Bank officers, underwriters, risk analysts" },
+  { label: "Business Development / Strategy / Consulting", description: "Sales executives, business analysts, management consultants" },
+  { label: "Creative / Arts / Media / Entertainment", description: "Graphic designers, content creators, video editors" },
+  { label: "Customer Service / Call Center / Support", description: "Customer support agents, call center reps" },
+  { label: "Driver / Transport / Logistics / Dispatch", description: "Drivers, dispatchers, logistics coordinators" },
+  { label: "Education / Teaching / Training", description: "Teachers, trainers, curriculum designers, education consultants" },
+  { label: "Engineering / Manufacturing / Technical", description: "Production engineers, quality assurance, factory technicians" },
+  { label: "Environmental / Natural Resources / Energy", description: "Environmental officers, renewable energy specialists" },
+  { label: "Government / Public Service / NGO / Non-Profit", description: "Policy advisors, program officers, humanitarian workers" },
+  { label: "Healthcare / Medical / Pharmaceuticals", description: "Doctors, nurses, pharmacists, lab technicians" },
+  { label: "Hospitality / Hotel / Restaurant / Catering", description: "Hotel managers, waiters, tour guides, event staff" },
+  { label: "Human Resources / Recruitment", description: "HR officers, recruiters, talent managers" },
+  { label: "ICT / Telecom / IT", description: "Developers, IT support, network engineers, cybersecurity experts" },
+  { label: "Legal / Law / Compliance / Risk", description: "Lawyers, legal assistants, compliance officers" },
+  { label: "Procurement / Supply Chain / Purchasing", description: "Procurement officers, supply chain managers, buyers" },
+  { label: "Real Estate / Property Management", description: "Property agents, real estate managers" },
+  { label: "Research / Science / Laboratory", description: "Lab scientists, research assistants, data analysts" },
+  { label: "Retail / Sales / Merchandising", description: "Sales reps, merchandisers, store managers" },
+  { label: "Security / Military / Law Enforcement", description: "Security guards, military personnel, police officers" },
+  { label: "Social Work / Psychology / Sociology", description: "Social workers, counselors, community organizers" },
+  { label: "Textile / Fashion / Apparel / Garment", description: "Fashion designers, tailors, production supervisors" },
+  { label: "Tourism / Travel / Leisure / Events", description: "Tour operators, travel agents, event planners" },
+  { label: "Warehouse / Inventory / Logistics Support", description: "Storekeepers, inventory clerks, warehouse managers" },
+  { label: "Other / General / Multi-disciplinary", description: "General roles that don’t fit into a single category" },
+];
+
 
 // Job type options
-const jobTypes = ["Full-Time", "Internship", "Contract", "Other"]
+const jobTypes = ["Full-Time", "Part-Time", "Internship", "Contract", "Other"]
 
 // Career level options
 const careerLevels = ["Fresher", "Entry Level", "Mid Level", "Senior Level", "Manager", "Director", "Executive"]
