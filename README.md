@@ -54,5 +54,3 @@ This project demonstrates practical frontend development skills with real-world 
 - Improving performance through component optimization
 
 ---
-
-## 📂 Project Structure
