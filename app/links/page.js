@@ -3,7 +3,7 @@ export default function Links() {
     <div className="min-h-screen bg-gray-900 flex flex-col items-center justify-center text-white">
       {/* Profile */}
       <img
-        src="/favicon.png" // Replace with your JobsEthiopia logo
+        src="/favicon.png"
         alt="JobsEthiopia Logo"
         className="w-24 h-24 rounded-full mb-4 shadow-lg"
       />
